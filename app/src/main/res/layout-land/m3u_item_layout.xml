@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/m3uItemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="22dp"
+    android:gravity="center_vertical"
+    android:background="#66FF0000"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:layout_marginBottom="10dp">
+
+    <CheckBox
+        android:id="@+id/m3uCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:scaleX="1.6"
+        android:scaleY="1.6"
+        android:buttonTint="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:focusable="false"
+        android:clickable="false">
+
+        <TextView
+            android:id="@+id/m3uNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M3U Adı"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:focusable="false"
+            android:clickable="false" />
+
+        <TextView
+            android:id="@+id/channelCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 kanal"
+            android:textColor="#BBBBBB"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            android:focusable="false"
+            android:clickable="false" />
+
+    </LinearLayout>
+
+</LinearLayout>

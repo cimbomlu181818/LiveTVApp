@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btnGizleM3U"
+        android:layout_width="296dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginStart="1dp"
+        android:background="#CCFF0000"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingStart="14dp"
+        android:paddingEnd="8dp"
+        android:gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchGizleM3U"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="3dp"
+        android:gravity="center_vertical"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true" />
+
+</FrameLayout>

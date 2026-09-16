@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/kategoriPanelContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/kategoriRecyclerView"
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:background="#FF0A1A3A"
+        android:scrollbars="none"
+        android:fadeScrollbars="true"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp" />
+
+    <TextView
+        android:id="@+id/kategoriBosText"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Kategori yok"
+        android:textColor="#CCB4D2F0"
+        android:textSize="13sp"
+        android:background="#800A1A3A"
+        android:visibility="gone" />
+
+</FrameLayout>

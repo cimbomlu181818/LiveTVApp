@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#44AAAAFF" />
+
+    <Button
+        android:id="@+id/btnGizleKategori"
+        android:layout_width="294dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="4dp"
+        android:background="#99FF0000"
+        android:textColor="#DDDDDD"
+        android:textSize="16sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="8dp"
+        android:gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchGizleKategori"
+        android:layout_width="wrap_content"
+        android:layout_height="62dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="center_vertical"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true" />
+
+</FrameLayout>

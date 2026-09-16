@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF0A1A3A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/etArama"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="#FF1A3A5A"
+            android:textColor="#FFEEF5FF"
+            android:textSize="16sp"
+            android:hint="Ara..."
+            android:textColorHint="#88B4D2F0"
+            android:paddingHorizontal="16dp"
+            android:inputType="text"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/grupFilm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvFilmBaslik"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Film"
+                        android:textColor="#FFE8C45A"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="8dp"
+                        android:gravity="center_vertical"
+                        android:background="#FF1A3A6A"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFilm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grupDizi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/tvDiziBaslik"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Dizi"
+                        android:textColor="#FFE8C45A"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="8dp"
+                        android:gravity="center_vertical"
+                        android:background="#FF1A3A6A"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDizi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grupCanli"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/tvCanliBaslik"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Canlı TV"
+                        android:textColor="#FFE8C45A"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="8dp"
+                        android:gravity="center_vertical"
+                        android:background="#FF1A3A6A"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCanliTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tvSonucYok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sonuç bulunamadı"
+            android:textColor="#CCB4D2F0"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:padding="24dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</FrameLayout>

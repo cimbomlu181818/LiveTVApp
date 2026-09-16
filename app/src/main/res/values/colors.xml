@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- AZSH marka paleti -->
+    <color name="bg_base">#0A0D14</color>
+    <color name="bg_base_alt">#0A0E17</color>
+    <color name="bg_panel">#131826</color>
+    <color name="bg_panel_alt">#0F131E</color>
+    <color name="bg_input">#0C1019</color>
+    <color name="border_line">#232B3D</color>
+    <color name="border_line_soft">#1A2130</color>
+
+    <color name="gold">#E7A94A</color>
+    <color name="teal">#2FC6B4</color>
+    <color name="teal_text">#06211D</color>
+
+    <color name="text_primary">#EDEFF3</color>
+    <color name="text_muted">#8A93A6</color>
+    <color name="text_faint">#5C6478</color>
+
+    <color name="error_bg">#20FF3B30</color>
+    <color name="error_text">#FFAFA5</color>
+</resources>

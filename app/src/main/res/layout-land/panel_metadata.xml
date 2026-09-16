@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/metadataPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:background="#0F0F1A">
+
+    <!-- Backdrop bulanık arka plan -->
+    <ImageView
+        android:id="@+id/metaBackdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.18" />
+
+    <!-- Backdrop üstü karartma gradyanı -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/meta_backdrop_gradyan" />
+
+    <!-- Yükleniyor göstergesi -->
+    <ProgressBar
+        android:id="@+id/metaYukleniyor"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="#E50914"
+        android:visibility="gone" />
+
+    <!-- Ana içerik -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- ── 1. SATIR: Poster + Sağ bilgiler ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Poster -->
+                <ImageView
+                    android:id="@+id/metaPoster"
+                    android:layout_width="110dp"
+                    android:layout_height="165dp"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    android:background="#22FFFFFF"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <!-- Sağ bilgiler -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                    <!-- Film adı -->
+                    <TextView
+                        android:id="@+id/metaBaslik"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="#F0F0F5"
+                        android:textStyle="bold"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:text="—" />
+
+                    <!-- Yıl · Süre · Ülke -->
+                    <TextView
+                        android:id="@+id/metaYilSure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textSize="11sp"
+                        android:textColor="#6B6B80"
+                        android:text="—" />
+
+                    <!-- Yönetmen -->
+                    <TextView
+                        android:id="@+id/metaYonetmen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textSize="11sp"
+                        android:textColor="#6B6B80"
+                        android:text=""
+                        android:visibility="gone" />
+
+                    <!-- Türler -->
+                    <TextView
+                        android:id="@+id/metaTurler"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="11sp"
+                        android:textColor="#E50914"
+                        android:text="" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── 2. SATIR: IMDb · TMDB · Yaş ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="#22FFFFFF"
+                android:orientation="horizontal">
+
+                <!-- IMDb -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IMDb"
+                        android:textSize="9sp"
+                        android:textColor="#6B6B80"
+                        android:letterSpacing="0.1"
+                        android:layout_marginBottom="3dp" />
+
+                    <TextView
+                        android:id="@+id/metaImdb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#F5C518"
+                        android:text="—" />
+                </LinearLayout>
+
+                <!-- Ayırıcı -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="#15FFFFFF" />
+
+                <!-- TMDB -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TMDB"
+                        android:textSize="9sp"
+                        android:textColor="#6B6B80"
+                        android:letterSpacing="0.1"
+                        android:layout_marginBottom="3dp" />
+
+                    <TextView
+                        android:id="@+id/metaTmdb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#01D277"
+                        android:text="—" />
+                </LinearLayout>
+
+                <!-- Ayırıcı -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="#15FFFFFF" />
+
+                <!-- Yaş Sınırı -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yaş"
+                        android:textSize="9sp"
+                        android:textColor="#6B6B80"
+                        android:letterSpacing="0.1"
+                        android:layout_marginBottom="3dp" />
+
+                    <TextView
+                        android:id="@+id/metaYas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#F0F0F5"
+                        android:text="—" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ── 3. KONU ── -->
+            <TextView
+                android:id="@+id/metaKonu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:textSize="12sp"
+                android:textColor="#BBF0F0F5"
+                android:lineSpacingExtra="3dp"
+                android:maxLines="6"
+                android:ellipsize="end"
+                android:text="" />
+
+            <!-- ── 4. OYUNCULAR başlık ── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="OYUNCULAR"
+                android:textSize="9sp"
+                android:textColor="#6B6B80"
+                android:letterSpacing="0.12" />
+
+            <!-- Oyuncu listesi (yatay scroll) -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:id="@+id/metaOyuncular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
+            <!-- Boş durum -->
+            <TextView
+                android:id="@+id/metaBos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="Bilgi bulunamadı"
+                android:textSize="12sp"
+                android:textColor="#6B6B80"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

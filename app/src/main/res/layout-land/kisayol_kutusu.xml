@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@drawable/kisayol_arkaplan"
+    android:minWidth="200dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🎮 DPAD KONTROLLERİ"
+        android:textColor="#e50914"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/satirKonteyner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+</LinearLayout>

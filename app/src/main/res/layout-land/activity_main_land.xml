@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.videolan.libvlc.util.VLCVideoLayout
+        android:id="@+id/videoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- ===== OYNATICI KONTROL ALANI (SEEK BAR + BUTONLAR) ===== -->
+    <LinearLayout
+        android:id="@+id/playerControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:background="@drawable/player_controls_background"
+        android:elevation="8dp"
+        android:visibility="gone">
+
+        <!-- ===== İÇERİK ADI (film/dizi için) ===== -->
+        <TextView
+            android:id="@+id/tvIcerikAdi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#CCFFFFFF"
+            android:textSize="14sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone" />
+
+        <!-- ===== SEEK BAR (ayrı XML'den include) ===== -->
+        <include layout="@layout/seek_bar" />
+
+        <!-- ===== KONTROL BUTONLARI SATIRI ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="12dp">
+
+            <!-- En sol: Kanallar butonu -->
+            <Button
+                android:id="@+id/btnKanallar"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="Kanallar"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/secondary_button_background"
+                android:layout_marginEnd="8dp"
+                android:stateListAnimator="@null"
+                android:elevation="2dp"
+                android:focusable="true"
+                android:focusableInTouchMode="false" />
+
+            <!-- Sol grup: Geri sarma -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical">
+
+                <Button
+                    android:id="@+id/btnRewindStep"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="⏪"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/control_button_background"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+
+                <Button
+                    android:id="@+id/btnRewind"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:text="⏮"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/control_button_background_primary"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+            </LinearLayout>
+
+            <!-- Orta grup: Oynat/Duraklat -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnPlayPause"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:text="⏸"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/play_pause_button_background"
+                    android:layout_marginHorizontal="12dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="4dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+            </LinearLayout>
+
+            <!-- Sağ grup: İleri sarma -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical">
+
+                <Button
+                    android:id="@+id/btnForward"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:text="⏭"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/control_button_background_primary"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+
+                <Button
+                    android:id="@+id/btnForwardStep"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="⏩"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/control_button_background"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+            </LinearLayout>
+
+            <!-- Sağ köşe: Ek butonlar -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp">
+                <Button
+                    android:id="@+id/btnMute"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="🔊"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/secondary_button_background"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+                <Button
+                    android:id="@+id/btnFavori"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="☆"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/secondary_button_background"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+
+
+
+                <Button
+                    android:id="@+id/btnSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:text="Ayarlar"
+                    android:textSize="13sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/secondary_button_background"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+
+                <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="🔍"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/secondary_button_background"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+
+                <Button
+                    android:id="@+id/btnPiP"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="◧"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/secondary_button_background"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+
+                <Button
+                    android:id="@+id/btnFullscreen"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="⛶"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/secondary_button_background"
+                    android:layout_marginEnd="8dp"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+
+                <Button
+                    android:id="@+id/btnCloseBar"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:text="✖"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/secondary_button_background"
+                    android:stateListAnimator="@null"
+                    android:elevation="2dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ===== YÜKLENİYOR OVERLAY ===== -->
+    <FrameLayout
+        android:id="@+id/yuklemeOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D0000000"
+        android:visibility="gone"
+        android:elevation="100dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp">
+
+            <ProgressBar
+                android:id="@+id/yuklemeSpinner"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:indeterminateTint="#4FC3F7"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:id="@+id/yuklemeBashik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M3U YÜKLENİYOR..."
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/yuklemeAlt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#4FC3F7"
+                android:textSize="13sp"
+                android:layout_marginBottom="24dp" />
+
+            <ProgressBar
+                android:id="@+id/yuklemeProgressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="260dp"
+                android:layout_height="4dp"
+                android:max="100"
+                android:progressTint="#4FC3F7"
+                android:progressBackgroundTint="#22FFFFFF"
+                android:layout_marginBottom="32dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LÜTFEN BEKLEYİN"
+                android:textColor="#44FFFFFF"
+                android:textSize="11sp"
+                android:letterSpacing="0.3" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

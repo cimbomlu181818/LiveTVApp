@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/item_focus_bg"
+    android:paddingTop="8dp"
+    android:paddingBottom="4dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:layout_margin="3dp"
+    android:focusable="false"
+    android:descendantFocusability="afterDescendants">
+
+    <!-- Checkbox -->
+    <CheckBox
+        android:id="@+id/cbSecim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="gone" />
+
+    <!-- İkon + Ad — tıklanabilir, focuslanabilir -->
+    <LinearLayout
+        android:id="@+id/layoutAc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:background="@drawable/item_focus_bg">
+
+        <ImageView
+            android:id="@+id/ivIkon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="fitCenter"
+            app:tint="#ccccff"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/tvTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:layout_marginTop="3dp"
+            android:focusable="false"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#eeeeff"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="4dp"
+            android:focusable="false" />
+    </LinearLayout>
+
+    <!-- Meta + işlem butonu yan yana -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:focusable="false">
+
+        <TextView
+            android:id="@+id/tvMeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#9999bb"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:focusable="false" />
+
+        <!-- ⋯ İŞLEM BUTONU -->
+        <ImageButton
+            android:id="@+id/btnIslem"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@android:drawable/ic_menu_more"
+            android:background="@drawable/btn_islem_bg"
+            app:tint="#9999bb"
+            android:padding="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:contentDescription="İşlemler" />
+    </LinearLayout>
+
+</LinearLayout>

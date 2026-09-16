@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/item_focus_bg"
+    android:paddingStart="10dp"
+    android:paddingEnd="4dp"
+    android:layout_marginBottom="2dp"
+    android:focusable="false"
+    android:descendantFocusability="afterDescendants">
+
+    <!-- Checkbox (seçim modu) -->
+    <CheckBox
+        android:id="@+id/cbSecim"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="6dp"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="gone" />
+
+    <!-- İkon -->
+    <ImageView
+        android:id="@+id/ivIkon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="fitCenter"
+        app:tint="#ccccff"
+        android:focusable="false" />
+
+    <!-- Ad + Meta — tıklanabilir alan (aç/gir) -->
+    <LinearLayout
+        android:id="@+id/layoutAc"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="6dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:background="@drawable/item_focus_bg">
+
+        <TextView
+            android:id="@+id/tvAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#eeeeff"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:ellipsize="middle"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/tvMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#9999bb"
+            android:textSize="12sp"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:focusable="false" />
+    </LinearLayout>
+
+    <!-- Tip Etiketi -->
+    <TextView
+        android:id="@+id/tvTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:layout_marginEnd="4dp"
+        android:focusable="false"
+        android:visibility="gone" />
+
+    <!-- ⋯ İŞLEM BUTONU — bağımsız focuslanabilir -->
+    <ImageButton
+        android:id="@+id/btnIslem"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@android:drawable/ic_menu_more"
+        android:background="@drawable/btn_islem_bg"
+        app:tint="#aaaacc"
+        android:padding="10dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:contentDescription="İşlemler" />
+
+</LinearLayout>

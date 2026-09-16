@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/diziPanelContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/diziRecyclerView"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FF0A1A3A"
+        android:scrollbars="none"
+        android:fadeScrollbars="true"
+        android:clipToPadding="false"
+        android:paddingTop="62dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp" />
+
+    <TextView
+        android:id="@+id/diziYukleniyorText"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:background="#800A1A3A"
+        android:gravity="center"
+        android:text="Diziler yükleniyor..."
+        android:textColor="#CCB4D2F0"
+        android:textSize="13sp"
+        android:padding="20dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/panelBaslik"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:gravity="center"
+        android:padding="14dp"
+        android:text="DİZİLER"
+        android:textColor="#FFE8F0FF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="#FF1A3A6A" />
+
+</FrameLayout>

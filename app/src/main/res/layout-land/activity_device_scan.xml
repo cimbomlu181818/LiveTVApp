@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#1a1b2f">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#1a1b2f">
+
+        <!-- Ana kart (fullscreen yaklaşım) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#2c2d44"
+            android:layout_margin="16dp"
+            android:padding="0dp"
+            android:stateListAnimator="@null"
+            android:elevation="0dp">
+
+            <!-- İçerik -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Başlık satırı -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="📡 AĞ TARAMASI"
+                        android:textColor="#4FC3F7"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDosyaBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#4a4b6e"
+                        android:paddingVertical="6dp"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:text="0 dosya" />
+                </LinearLayout>
+
+                <!-- Progress bölümü -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#1e1f33"
+                    android:padding="16dp"
+                    android:layout_marginBottom="20dp">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:progress="0"
+                        android:max="100"
+                        android:progressTint="#4FC3F7"
+                        android:progressBackgroundTint="#2a2b3f" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/tvTaramaDurum"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="🔍 Ağ taranıyor..."
+                            android:textColor="#ccc"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvSure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⏱️ 0/8 sn"
+                            android:textColor="#ccc"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:id="@+id/tvBulunanSayisi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📡 Bulunan cihazlar: 0"
+                            android:textColor="#ccc"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvYenileMetin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔄 Yenile"
+                            android:textColor="#4FC3F7"
+                            android:textSize="14sp"
+                            android:focusable="true"
+                            android:clickable="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Cihaz listesi (yüksekliği wrap_content, RecyclerView da wrap_content) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#1e1f33"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📱 Kullanıma hazır cihazlar"
+                        android:textColor="#aaa"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCihazlar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:padding="4dp"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tvAltBilgi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Cihaza odaklan → seçmek için tıkla / uzaktan kumanda ile 'Tamam' tuşuna bas."
+                        android:textColor="#666"
+                        android:textSize="11sp"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Buton çubuğu -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:padding="16dp"
+                android:background="#1e1f33">
+
+                <Button
+                    android:id="@+id/btnYenile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:text="🔄 YENİLE"
+                    android:background="@drawable/btn_focus_bg"
+                    android:textColor="#FFFFFF"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:focusable="true" />
+
+                <Button
+                    android:id="@+id/btnIptal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:text="✖ İPTAL"
+                    android:background="@drawable/btn_focus_bg"
+                    android:textColor="#FFFFFF"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:focusable="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

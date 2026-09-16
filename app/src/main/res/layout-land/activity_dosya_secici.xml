@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1a1b2f">
+
+    <!-- ÜST BAR -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:background="#25273e"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <ImageButton android:id="@+id/btnGeri"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:background="@drawable/btn_focus_bg"
+            android:src="@android:drawable/ic_media_rew"
+            android:padding="8dp" android:focusable="true"
+            android:contentDescription="Geri" app:tint="#FFFFFF"/>
+
+        <ImageButton android:id="@+id/btnAnaDizin"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:background="@drawable/btn_focus_bg"
+            android:src="@android:drawable/ic_menu_compass"
+            android:padding="8dp" android:focusable="true"
+            android:layout_marginStart="4dp"
+            android:contentDescription="Ana Dizin" app:tint="#FFFFFF"/>
+
+        <TextView android:id="@+id/tvYol"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
+            android:textColor="#03dac6" android:textSize="12sp"
+            android:fontFamily="monospace" android:singleLine="true"
+            android:ellipsize="start" android:text="/storage/emulated/0"/>
+
+        <ImageButton android:id="@+id/btnArama"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:background="@drawable/btn_focus_bg"
+            android:src="@android:drawable/ic_menu_search"
+            android:padding="8dp" android:focusable="true"
+            android:contentDescription="Ara" app:tint="#FFFFFF"/>
+
+        <ImageButton android:id="@+id/btnSiralama"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:background="@drawable/btn_focus_bg"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:padding="8dp" android:focusable="true"
+            android:layout_marginStart="4dp"
+            android:contentDescription="Sırala" app:tint="#FFFFFF"/>
+
+        <ImageButton android:id="@+id/btnGorunum"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:background="@drawable/btn_focus_bg"
+            android:src="@android:drawable/ic_dialog_dialer"
+            android:padding="8dp" android:focusable="true"
+            android:layout_marginStart="4dp"
+            android:contentDescription="Görünüm" app:tint="#FFFFFF"/>
+
+    </LinearLayout>
+
+    <!-- ARAMA BARI -->
+    <LinearLayout android:id="@+id/aramaBar"
+        android:layout_width="match_parent" android:layout_height="44dp"
+        android:orientation="horizontal" android:background="#1e1f33"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp" android:paddingEnd="12dp"
+        android:visibility="gone">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="🔍  " android:textColor="#cccccc" android:textSize="14sp"/>
+
+        <EditText android:id="@+id/etArama"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:background="@null"
+            android:textColor="#ffffff" android:textColorHint="#9999bb"
+            android:hint="Dosya adı ara..." android:textSize="14sp"
+            android:imeOptions="actionSearch" android:inputType="text"
+            android:singleLine="true"/>
+
+    </LinearLayout>
+
+    <!-- PANO BİLGİSİ -->
+    <TextView android:id="@+id/tvPanoBilgi"
+        android:layout_width="match_parent" android:layout_height="28dp"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp" android:paddingEnd="12dp"
+        android:background="#2a1f4a" android:textColor="#bb86fc"
+        android:textSize="11sp" android:singleLine="true"
+        android:ellipsize="middle" android:visibility="gone"/>
+
+    <!-- BREADCRUMB -->
+    <HorizontalScrollView
+        android:layout_width="match_parent" android:layout_height="30dp"
+        android:background="#1e1f33" android:scrollbars="none"
+        android:overScrollMode="never"
+        android:focusable="false"
+        android:descendantFocusability="blocksDescendants"
+        android:contentDescription="Konum yolu">
+
+        <LinearLayout android:id="@+id/breadcrumbLayout"
+            android:layout_width="wrap_content" android:layout_height="match_parent"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:paddingStart="12dp" android:paddingEnd="12dp"/>
+
+    </HorizontalScrollView>
+
+    <!-- DOSYA LİSTESİ -->
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:padding="6dp" android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:descendantFocusability="afterDescendants"
+            android:focusable="false"/>
+
+        <TextView android:id="@+id/tvBos"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:gravity="center" android:text="📂\nBu klasör boş"
+            android:textColor="#9999bb" android:textSize="16sp"
+            android:lineSpacingMultiplier="2.0" android:visibility="gone"/>
+
+    </FrameLayout>
+
+    <!-- ALT TOOLBAR -->
+    <LinearLayout android:id="@+id/altToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#25273e"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <!-- Yeni Klasör -->
+        <LinearLayout
+            android:id="@+id/btnYeniKlasor"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/btn_focus_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_add"
+                app:tint="#FFFFFF"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yeni Klasör"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:layout_marginTop="2dp"
+                android:focusable="false" />
+        </LinearLayout>
+
+        <!-- Yapıştır -->
+        <LinearLayout
+            android:id="@+id/btnYapistir"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/btn_focus_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="4dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_set_as"
+                app:tint="#FFFFFF"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yapıştır"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:layout_marginTop="2dp"
+                android:focusable="false" />
+        </LinearLayout>
+
+        <!-- Seçim Modu -->
+        <LinearLayout
+            android:id="@+id/btnSecimMod"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/btn_focus_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="4dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/checkbox_on_background"
+                app:tint="#FFFFFF"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seçim Modu"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:layout_marginTop="2dp"
+                android:focusable="false" />
+        </LinearLayout>
+        <!-- Tümünü Seç Butonu -->
+        <LinearLayout
+            android:id="@+id/btnTumunuSec"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/btn_focus_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="4dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/checkbox_on_background"
+                app:tint="#FFFFFF"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tümünü Seç"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:layout_marginTop="2dp"
+                android:focusable="false" />
+        </LinearLayout>
+        <TextView android:id="@+id/tvSecimSayisi"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:layout_marginStart="10dp"
+            android:textColor="#bb86fc" android:textSize="12sp" android:text=""/>
+
+        <TextView android:id="@+id/tvBilgi"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#9999cc" android:textSize="11sp"
+            android:text="0 klasör, 0 dosya"/>
+
+    </LinearLayout>
+
+    <!-- KISAYOL ÇUBUĞU -->
+    <TextView android:layout_width="match_parent" android:layout_height="24dp"
+        android:background="#1a1b2f" android:gravity="center"
+        android:textColor="#9999bb" android:textSize="11sp"
+        android:text="[1]İsim [2]Tarih [3]Boyut [/]Ara [N]Klasör [V]Yapıştır [BACK]Geri"/>
+
+</LinearLayout>

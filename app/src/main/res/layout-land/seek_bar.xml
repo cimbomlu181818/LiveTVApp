@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/seekBarRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:id="@+id/tvElapsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:fontFamily="monospace"
+        android:minWidth="48dp"
+        android:gravity="center" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:progressTint="#FF5A9ACE"
+        android:thumbTint="#FF5A9ACE"
+        android:progressBackgroundTint="#335A9ACE"
+        android:focusable="true"
+        android:focusableInTouchMode="false"
+        android:max="1000" />
+
+    <TextView
+        android:id="@+id/tvRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-00:00"
+        android:textColor="#aaaacc"
+        android:textSize="13sp"
+        android:fontFamily="monospace"
+        android:minWidth="52dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" · "
+        android:textColor="#555577"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textColor="#666688"
+        android:textSize="13sp"
+        android:fontFamily="monospace"
+        android:minWidth="48dp"
+        android:gravity="center" />
+
+</LinearLayout>

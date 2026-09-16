@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0F1E">
+
+    <!-- Yıldız canvas -->
+    <com.example.livetvapp.SplashStarView
+        android:id="@+id/starView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Merkez içerik -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Logo alanı -->
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal">
+
+            <!-- Dış dönen halka -->
+            <ImageView
+                android:id="@+id/outerRing"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:src="@drawable/splash_ring_outer" />
+
+            <!-- İç ters dönen halka -->
+            <ImageView
+                android:id="@+id/innerRing"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:src="@drawable/splash_ring_inner" />
+
+            <!-- Logo kutusu -->
+            <FrameLayout
+                android:id="@+id/logoBox"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:background="@drawable/splash_logo_bg"
+                android:elevation="4dp">
+
+                <!-- Sweep efekti için beyaz gradient view -->
+                <View
+                    android:id="@+id/sweepView"
+                    android:layout_width="40dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/splash_sweep"
+                    android:layout_gravity="center_horizontal" />
+
+                <!-- Logo ikonu -->
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_launcher_foreground" />
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <!-- Uygulama adı -->
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="AZSH M3U PLAYER"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.15"
+            android:alpha="0" />
+
+        <!-- Durum mesajı -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Kimlik doğrulanıyor..."
+            android:textColor="#80FFFFFF"
+            android:textSize="12sp"
+            android:letterSpacing="0.05"
+            android:alpha="0" />
+
+        <!-- İlerleme çubuğu -->
+        <FrameLayout
+            android:layout_width="160dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="#22FF6B2C"
+            android:alpha="0"
+            android:id="@+id/progressContainer">
+
+            <View
+                android:id="@+id/progressFill"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@drawable/splash_progress_fill" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

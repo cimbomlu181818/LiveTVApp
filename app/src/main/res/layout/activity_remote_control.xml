@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1C2E"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Başlık satırı -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="📺 LiveTV Remote"
+                android:textColor="#E0E0F0"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnClose"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:text="✕"
+                android:textColor="#E0E0F0"
+                android:background="@drawable/oval_button"
+                android:backgroundTint="#3A3A5C"
+                android:textSize="16sp"
+                android:elevation="2dp" />
+        </LinearLayout>
+
+        <!-- Durum -->
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bağlanıyor..."
+            android:textColor="#A0A0C0"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            android:background="@drawable/rounded_rect"
+            android:backgroundTint="#252540" />
+
+        <!-- Klavye Modu Butonu -->
+        <Button
+            android:id="@+id/btnKeyboardMode"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="⌨️  Klavye Modu"
+            android:textColor="#C0C0E0"
+            android:textSize="13sp"
+            android:background="@drawable/rounded_rect"
+            android:backgroundTint="#2A2A4A"
+            android:layout_marginBottom="12dp"
+            android:elevation="2dp" />
+
+        <!-- Klavye Paneli -->
+        <LinearLayout
+            android:id="@+id/keyboardPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rect"
+            android:backgroundTint="#252540"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Metin gir:"
+                android:textColor="#8080A0"
+                android:textSize="11sp"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/etRemoteInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:background="@drawable/rounded_rect"
+                android:backgroundTint="#1C1C2E"
+                android:padding="10dp"
+                android:textColor="#E0E0F0"
+                android:textSize="13sp"
+                android:hint="Yazın..."
+                android:textColorHint="#505070"
+                android:inputType="text|textMultiLine"
+                android:maxLines="4" />
+
+            <Button
+                android:id="@+id/btnCloseKeyboard"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:text="Klavyeyi Kapat"
+                android:textColor="#E0E0F0"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_rect"
+                android:backgroundTint="#3A2A4A" />
+        </LinearLayout>
+
+        <!-- Kontroller -->
+        <LinearLayout
+            android:id="@+id/controlsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- D-PAD -->
+            <RelativeLayout
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp">
+
+                <Button
+                    android:id="@+id/btnDpadUp"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="▲"
+                    android:textColor="#E0E0F0"
+                    android:textSize="22sp"
+                    android:background="@drawable/oval_button"
+                    android:backgroundTint="#2E2E50"
+                    android:elevation="3dp" />
+
+                <Button
+                    android:id="@+id/btnDpadDown"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="▼"
+                    android:textColor="#E0E0F0"
+                    android:textSize="22sp"
+                    android:background="@drawable/oval_button"
+                    android:backgroundTint="#2E2E50"
+                    android:elevation="3dp" />
+
+                <Button
+                    android:id="@+id/btnDpadLeft"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="◀"
+                    android:textColor="#E0E0F0"
+                    android:textSize="22sp"
+                    android:background="@drawable/oval_button"
+                    android:backgroundTint="#2E2E50"
+                    android:elevation="3dp" />
+
+                <Button
+                    android:id="@+id/btnDpadRight"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="▶"
+                    android:textColor="#E0E0F0"
+                    android:textSize="22sp"
+                    android:background="@drawable/oval_button"
+                    android:backgroundTint="#2E2E50"
+                    android:elevation="3dp" />
+
+                <Button
+                    android:id="@+id/btnDpadCenter"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_centerInParent="true"
+                    android:text="OK"
+                    android:textColor="#E0E0F0"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/oval_button"
+                    android:backgroundTint="#3D3D6B"
+                    android:elevation="5dp" />
+            </RelativeLayout>
+
+            <!-- Medya Kontrolleri: Kanallar + Geri Sar + Play/Pause + İleri Sar + Mute -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btnKanallar"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:text="📋"
+                        android:textSize="20sp"
+                        android:background="@drawable/oval_button"
+                        android:backgroundTint="#2E2E50"
+                        android:textColor="#E0E0F0"
+                        android:elevation="3dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kanallar"
+                        android:textColor="#7070A0"
+                        android:textSize="10sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btnRewind"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:text="⏪"
+                        android:textSize="20sp"
+                        android:background="@drawable/oval_button"
+                        android:backgroundTint="#2E2E50"
+                        android:textColor="#E0E0F0"
+                        android:elevation="3dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Geri Sar"
+                        android:textColor="#7070A0"
+                        android:textSize="10sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btnPlayPause"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:text="⏯"
+                        android:textSize="24sp"
+                        android:background="@drawable/oval_button"
+                        android:backgroundTint="#3D3D6B"
+                        android:textColor="#E0E0F0"
+                        android:elevation="5dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Oynat"
+                        android:textColor="#7070A0"
+                        android:textSize="10sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btnForward"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:text="⏩"
+                        android:textSize="20sp"
+                        android:background="@drawable/oval_button"
+                        android:backgroundTint="#2E2E50"
+                        android:textColor="#E0E0F0"
+                        android:elevation="3dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="İleri Sar"
+                        android:textColor="#7070A0"
+                        android:textSize="10sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btnMute"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:text="🔊"
+                        android:textSize="20sp"
+                        android:background="@drawable/oval_button"
+                        android:backgroundTint="#2E2E50"
+                        android:textColor="#E0E0F0"
+                        android:elevation="3dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ses"
+                        android:textColor="#7070A0"
+                        android:textSize="10sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Ses Yüksekliği + Geri -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="6dp">
+
+                <Button
+                    android:id="@+id/btnVolumeDown"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="🔉  Ses -"
+                    android:textSize="13sp"
+                    android:background="@drawable/rounded_rect"
+                    android:backgroundTint="#2A2A48"
+                    android:textColor="#C0C0E0"
+                    android:elevation="2dp" />
+
+                <Button
+                    android:id="@+id/btnVolumeUp"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="🔊  Ses +"
+                    android:textSize="13sp"
+                    android:background="@drawable/rounded_rect"
+                    android:backgroundTint="#2A2A48"
+                    android:textColor="#C0C0E0"
+                    android:elevation="2dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="↩  Geri"
+                android:textSize="13sp"
+                android:background="@drawable/rounded_rect"
+                android:backgroundTint="#2A2A48"
+                android:textColor="#C0C0E0"
+                android:elevation="2dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Gizli btnMenu (işlevsiz ama kod referansı için) -->
+            <Button
+                android:id="@+id/btnMenu"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
