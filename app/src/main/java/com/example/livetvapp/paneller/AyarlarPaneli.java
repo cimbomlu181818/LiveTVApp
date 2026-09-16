@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.Gravity;
 
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +36,7 @@ import com.example.livetvapp.database.M3UItem;
 import com.example.livetvapp.database.M3UManager;
 import com.example.livetvapp.database.XtreamCodesManager;
 import com.example.livetvapp.database.YedekYonetici;
+import com.example.livetvapp.ApiHelper;
 import com.example.livetvapp.remotecontrol.DeviceDetector;
 import java.util.List;
 import java.util.Map;
@@ -1495,19 +1497,50 @@ public class AyarlarPaneli {
 
     private void cikisYapButonuTiklandi() {
         SharedPreferences girisTercihleri = activity.getSharedPreferences("azsh_giris", Context.MODE_PRIVATE);
-        String emailBilgisi = girisTercihleri.getString("email", "Oturum açık");
-        if (emailBilgisi == null || emailBilgisi.isEmpty()) emailBilgisi = "Oturum açık";
+        String emailBilgisi = girisTercihleri.getString("email", "");
+        if (emailBilgisi == null) emailBilgisi = "";
+        final String email = emailBilgisi;
+
         new AlertDialog.Builder(activity)
                 .setTitle("Çıkış Yap")
-                .setMessage("Oturumu kapatmak istediğinize emin misiniz?\n(" + emailBilgisi + ")")
+                .setMessage("Oturumu kapatmak istediğinize emin misiniz?\n(" + email + ")")
                 .setPositiveButton("Evet", (dialog, which) -> {
-                    girisTercihleri.edit().clear().apply();
-                    new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                        Intent intent = new Intent(activity, com.example.livetvapp.LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        activity.startActivity(intent);
-                        activity.finish();
-                    }, 800);
+                    String cihazId = android.provider.Settings.Secure.getString(
+                            activity.getContentResolver(),
+                            android.provider.Settings.Secure.ANDROID_ID
+                    );
+
+                    com.example.livetvapp.ApiHelper apiHelper = new com.example.livetvapp.ApiHelper();
+                    apiHelper.cihazCikisYap(email, cihazId, new com.example.livetvapp.ApiHelper.ApiListener() {
+                        @Override
+                        public void onBasarili(org.json.JSONObject sonuc) {
+                            girisTercihleri.edit().clear().apply();
+                            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                                Intent intent = new Intent(activity, com.example.livetvapp.LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                activity.startActivity(intent);
+                                activity.finish();
+                            }, 800);
+                        }
+
+                        @Override
+                        public void onHata(String hata) {
+                            new AlertDialog.Builder(activity)
+                                    .setTitle("Sunucuya Ulaşılamadı")
+                                    .setMessage("Çıkış işlemi sunucuya iletilemedi.\n\nYine de çıkış yapılsın mı?\n\n(Not: Cihaz sınırı hâlâ dolu kalabilir)")
+                                    .setPositiveButton("Evet, Yine de Çık", (d2, w2) -> {
+                                        girisTercihleri.edit().clear().apply();
+                                        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                                            Intent intent = new Intent(activity, com.example.livetvapp.LoginActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            activity.startActivity(intent);
+                                            activity.finish();
+                                        }, 800);
+                                    })
+                                    .setNegativeButton("İptal", null)
+                                    .show();
+                        }
+                    });
                 })
                 .setNegativeButton("İptal", null)
                 .show();

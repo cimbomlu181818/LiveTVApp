@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
 import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -52,11 +51,11 @@ public class ApiHelper {
 
         TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         tmf.init((java.security.KeyStore) null);
+
         final X509ExtendedTrustManager varsayilanTrustManager =
                 (X509ExtendedTrustManager) tmf.getTrustManagers()[0];
 
         X509ExtendedTrustManager pinliTrustManager = new X509ExtendedTrustManager() {
-
             private void pinKontrolEt(X509Certificate[] chain) throws CertificateException {
                 boolean eslesmeVar = false;
                 for (X509Certificate cert : chain) {
@@ -110,7 +109,6 @@ public class ApiHelper {
             }
         };
 
-
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, new TrustManager[]{pinliTrustManager}, null);
         pinliSslContext = sslContext;
@@ -137,11 +135,9 @@ public class ApiHelper {
                 try {
                     URL url = new URL(BASE_URL + endpoint);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
                     if (conn instanceof HttpsURLConnection) {
                         ((HttpsURLConnection) conn).setSSLSocketFactory(getPinliSslContext().getSocketFactory());
                     }
-
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type", "application/json");
                     conn.setDoOutput(true);
@@ -166,8 +162,8 @@ public class ApiHelper {
                         sb.append(satir);
                     }
                     br.close();
-                    return sb.toString();
 
+                    return sb.toString();
                 } catch (Exception e) {
                     hataMesaji = "Bağlantı hatası: " + e.getMessage();
                     return null;
@@ -236,6 +232,23 @@ public class ApiHelper {
             veri.put("marka", android.os.Build.MANUFACTURER);
             veri.put("model", android.os.Build.MODEL);
             istekGonder("erisim/", veri, listener);
+        } catch (Exception e) {
+            listener.onHata("Veri hazırlama hatası.");
+        }
+    }
+
+    /**
+     * Kullanıcı "Çıkış Yap" dediğinde çağrılır.
+     * Backend'e bu cihazın kaydını silmesi için istek gönderir.
+     * Başarılı olursa callback ile "basarili" JSON'u döner.
+     */
+
+    public void cihazCikisYap(String email, String cihazId, ApiListener listener) {
+        try {
+            JSONObject veri = new JSONObject();
+            veri.put("email", email);
+            veri.put("cihaz_id", cihazId);
+            istekGonder("cihaz-cikis/", veri, listener);
         } catch (Exception e) {
             listener.onHata("Veri hazırlama hatası.");
         }

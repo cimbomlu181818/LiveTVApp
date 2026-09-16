@@ -184,3 +184,32 @@ def erisim_kontrol(request):
         return JsonResponse({'bakim_modu': False, 'erisim': True, 'durum': 'trial'})
 
     return JsonResponse({'bakim_modu': False, 'erisim': False, 'durum': 'trial_bitti'})
+
+@csrf_exempt
+@ratelimit(key='ip', rate='10/m', method='POST', block=True)
+def cihaz_cikis(request):
+    if request.method != 'POST':
+        return JsonResponse({'hata': 'Sadece POST istekleri kabul edilir.'}, status=405)
+    try:
+        veri = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({'hata': 'Geçersiz veri formatı.'}, status=400)
+
+    email = veri.get('email', '').strip().lower()
+    cihaz_id = veri.get('cihaz_id', '').strip()
+
+    if not email or not cihaz_id:
+        return JsonResponse({'hata': 'Email ve cihaz_id zorunludur.'}, status=400)
+
+    try:
+        kullanici = Kullanici.objects.get(email=email)
+    except Kullanici.DoesNotExist:
+        return JsonResponse({'basarili': True, 'mesaj': 'Çıkış işlemi tamamlandı.'})
+
+    silinen_sayisi, _ = Cihaz.objects.filter(kullanici=kullanici, cihaz_id=cihaz_id).delete()
+
+    return JsonResponse({
+        'basarili': True,
+        'mesaj': 'Cihaz kaydı silindi.',
+        'silinen': silinen_sayisi
+    })
