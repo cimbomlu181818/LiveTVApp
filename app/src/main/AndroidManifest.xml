@@ -60,6 +60,12 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".TermsActivity"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+        <activity
             android:name="com.example.livetvapp.dosyatransferi.FileTransferActivity"
             android:exported="false"
             android:screenOrientation="sensor"

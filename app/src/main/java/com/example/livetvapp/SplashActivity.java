@@ -189,8 +189,12 @@ public class SplashActivity extends AppCompatActivity {
             tvStatus.setText("Erişim onaylandı!");
 
             handler.postDelayed(() -> {
+                boolean hedefTelefon = com.example.livetvapp.remotecontrol.DeviceDetector.isPhone(SplashActivity.this);
                 Intent i;
-                if (com.example.livetvapp.remotecontrol.DeviceDetector.isPhone(SplashActivity.this)) {
+                if (!TermsActivity.guncelSozlesmeOnaylandiMi(SplashActivity.this)) {
+                    i = new Intent(SplashActivity.this, TermsActivity.class);
+                    i.putExtra(TermsActivity.EXTRA_HEDEF_TELEFON, hedefTelefon);
+                } else if (hedefTelefon) {
                     i = new Intent(SplashActivity.this, LauncherActivity.class);
                 } else {
                     i = new Intent(SplashActivity.this, MainActivity.class);

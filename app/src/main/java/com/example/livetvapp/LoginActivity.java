@@ -437,7 +437,7 @@ public class LoginActivity extends AppCompatActivity {
                     boolean erisim = sonuc.optBoolean("erisim", false);
 
                     if (erisim) {
-                        uygulamayiAc();
+                        girisiTamamla();
                     } else if ("mail_dogrulanmadi".equals(durum)) {
                         dogrulamaPaneliniGoster(email);
                     } else {
@@ -509,7 +509,17 @@ public class LoginActivity extends AppCompatActivity {
         anim.setRepeatCount(android.animation.ValueAnimator.INFINITE);
         anim.start();
     }
-
+    private void girisiTamamla() {
+        boolean hedefTelefon = com.example.livetvapp.remotecontrol.DeviceDetector.isPhone(this);
+        if (TermsActivity.guncelSozlesmeOnaylandiMi(this)) {
+            uygulamayiAc();
+        } else {
+            Intent intent = new Intent(LoginActivity.this, TermsActivity.class);
+            intent.putExtra(TermsActivity.EXTRA_HEDEF_TELEFON, hedefTelefon);
+            startActivity(intent);
+            // finish() ÇAĞRILMAZ — "Reddet" denirse bu ekrana geri dönülür.
+        }
+    }
     private void uygulamayiAc() {
         Intent intent;
         if (com.example.livetvapp.remotecontrol.DeviceDetector.isPhone(this)) {

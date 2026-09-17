@@ -1,4 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AZSH M3U PLAYER</string>
     <string name="default_web_client_id">402751117081-cloif1923g0dj1ho34bttodku1n7f2d1.apps.googleusercontent.com</string>
+
+    <string name="sozlesme_metni"><![CDATA[
+KULLANICI SORUMLULUK BEYANI VE KULLANIM ŞARTLARI
+
+Bu uygulamayı indirerek, kuran veya kullanmaya devam ederek aşağıdaki şartları okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan edersiniz.
+
+1. Uygulamanın Niteliği
+Bu uygulama yalnızca genel amaçlı bir medya oynatıcı (player) yazılımıdır. Uygulama; M3U, M3U8, Xtream Codes veya benzeri formatlardaki yayın listelerini/bağlantılarını oynatmaya yarayan bir istemci (client) niteliğindedir. Uygulama kendi bünyesinde hiçbir yayın kaynağı, kanal listesi, abonelik bilgisi veya içerik sunmaz, barındırmaz, önermez, dağıtmaz veya üretmez. Uygulama içerisinde oynatılan tüm içerikler, kullanıcının kendi iradesiyle ve kendi temin ettiği kaynaklardan (kendi IPTV aboneliği, kendi M3U listesi, kendi Xtream Codes bilgileri vb.) elde edilir ve uygulamaya eklenir.
+
+2. Kaynakların Temini Kullanıcıya Aittir
+Uygulama, kullanıcıya herhangi bir yayın kaynağı, liste veya abonelik satmaz, sağlamaz ya da yönlendirmez. Kullanılan kaynakların hukuka uygunluğunu, lisans durumunu ve telif hakkı bakımından meşruiyetini araştırmak ve doğrulamak tamamen kullanıcının sorumluluğundadır. Geliştirici, kullanıcının kendi eklediği kaynakların içeriği, yasallığı veya güncelliği üzerinde hiçbir kontrole sahip değildir ve bu kaynaklardan doğabilecek hiçbir zarardan sorumlu tutulamaz.
+
+3. Yasa Dışı Kullanım Yasaktır
+Uygulamanın; telif hakkı ihlali oluşturan kaynaklara erişim amacıyla, yasa dışı yayıncılık, dolandırıcılık veya herhangi bir suç teşkil eden amaçla kullanılması kesinlikle yasaktır. Böyle bir kullanım tespit edildiğinde, ilgili hesap önceden bildirim yapılmaksızın geçici veya kalıcı olarak kısıtlanabilir.
+
+4. Telif Hakkı Bildirimleri
+Herhangi bir hak sahibi, uygulama üzerinden üçüncü bir kişinin kendi eklediği bir kaynağın telif haklarını ihlal ettiğini düşünüyorsa, durumu azsh181818@gmail.com adresine bildirebilir. Geliştirici, kendisine ulaşan geçerli bildirimleri değerlendirerek gerekli teknik önlemleri (ilgili işlevin kısıtlanması, hesabın incelenmesi vb.) makul süre içinde alır.
+
+5. Değiştirilmiş (Mod) Sürümler Yasaktır
+Uygulamanın resmi olmayan, değiştirilmiş, mod edilmiş, tersine mühendislik yapılmış veya izinsiz dağıtılmış sürümlerinin kullanılması yasaktır. Bu tür sürümlerin kullanımından kaynaklanan güvenlik açıkları, veri kayıpları veya hesap sorunlarından geliştirici sorumlu tutulamaz.
+
+6. Hesap Güvenliği
+Hesabınızın güvenliğinden ve hesabınız üzerinden gerçekleştirilen tüm işlemlerden siz sorumlusunuz. Hesap bilgilerinizi üçüncü kişilerle paylaşmanız durumunda doğabilecek her türlü sonuçtan geliştirici sorumlu değildir.
+
+7. Fikri Mülkiyet
+Uygulama arayüzünde görünen kanal adı, logo ve benzeri unsurlar, kullanıcının eklediği kaynaklardan otomatik/teknik olarak çekilmekte olup ilgili hak sahiplerine aittir. Bu unsurların gösterimi, geliştiricinin bu içerikler üzerinde herhangi bir hak iddia ettiği veya bunları onayladığı anlamına gelmez.
+
+8. Yaş Sınırı
+Bu uygulamayı kullanabilmek için 18 yaşını doldurmuş olmanız veya bulunduğunuz ülkedeki yasal reşitlik yaşına ulaşmış olmanız gerekmektedir.
+
+9. Garanti Reddi
+Uygulama olduğu gibi ve mevcut haliyle sunulmaktadır. Kesintisiz, hatasız çalışacağına veya kullanıcının eklediği kaynakların her zaman erişilebilir olacağına dair herhangi bir garanti verilmemektedir.
+
+10. Veri Güvenliği ve Gizlilik
+Uygulamaya kaydettiğiniz bilgilerin (e-posta adresi, şifre, eklenen liste bilgileri vb.) güvenliği ve gizliliği konusunda azami özen gösterilmekle birlikte mutlak bir garanti verilmemektedir.
+
+11. Sorumluluğun Sınırlandırılması
+Geliştirici; kullanıcının uygulamaya eklediği kaynakların içeriğinden, bu kaynakların telif durumundan, yasallığından veya kullanımından doğabilecek doğrudan veya dolaylı hiçbir zarardan sorumlu tutulamaz. Sorumluluk, kaynağı seçen ve ekleyen kullanıcıya aittir.
+
+12. Şartların Değiştirilmesi
+Geliştirici, bu şartları zaman zaman güncelleyebilir. Güncel şartlar uygulama içinde veya ilgili mecrada yayımlandığı andan itibaren geçerli olur.
+]]></string>
 </resources>
