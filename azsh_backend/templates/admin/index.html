@@ -1,0 +1,88 @@
+{% load i18n %}
+{% load static %}
+{% load log %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Yönetimi</title>
+    <link rel="stylesheet" href="{% static 'css/admin_custom.css' %}">
+</head>
+<body>
+
+<header>
+    <a href="{% url 'admin:index' %}" class="brand">Django <span>yönetimi</span></a>
+    <div class="user-nav">
+        <span>Hoş Geldiniz, <strong>{% firstof request.user.email request.user.get_username %}</strong></span>
+        <a href="/">Siteyi Göster</a>
+        <span style="color:#334155">/</span>
+        <a href="{% url 'admin:password_change' %}">Parolayı Değiştir</a>
+        <span style="color:#334155">/</span>
+        <a href="{% url 'admin:logout' %}">Oturumu Kapat</a>
+        <div class="theme-toggle">🌙</div>
+    </div>
+</header>
+
+<div class="container">
+
+    <h1>Site yönetimi</h1>
+
+    <div class="modules-grid">
+        {% for app in app_list %}
+        <div class="module-group">
+            <div class="group-title">{{ app.name }}</div>
+            <ul class="module-list">
+                {% for model in app.models %}
+                <li class="module-item">
+                    {% if model.admin_url %}
+                    <a href="{{ model.admin_url }}" class="module-link">{{ model.name }}</a>
+                    {% else %}
+                    <span class="module-link">{{ model.name }}</span>
+                    {% endif %}
+                    <div class="actions">
+                        {% if model.add_url %}
+                        <a href="{{ model.add_url }}" class="action-btn add"><i class="icon">＋</i> Ekle</a>
+                        {% endif %}
+                        {% if model.admin_url %}
+                        <a href="{{ model.admin_url }}" class="action-btn edit"><i class="icon">✎</i> Değiştir</a>
+                        {% endif %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="bottom-activity-section">
+        <h2>Son eylemler</h2>
+        <h3>Eylemlerim</h3>
+        {% get_admin_log 10 as admin_log for_user user %}
+        {% if not admin_log %}
+        <p style="text-align:center; color:#94a3b8;">Kayıt yok</p>
+        {% else %}
+        <ul class="activity-list">
+            {% for entry in admin_log %}
+            <li class="activity-item">
+                <div class="activity-icon {% if entry.is_addition %}add{% elif entry.is_change %}edit{% elif entry.is_deletion %}delete{% endif %}">
+                    {% if entry.is_addition %}＋{% elif entry.is_change %}✎{% else %}✖{% endif %}
+                </div>
+                <div class="activity-content">
+                    {% if entry.is_deletion or not entry.get_admin_url %}
+                    <span>{{ entry.object_repr }}</span>
+                    {% else %}
+                    <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                    {% endif %}
+                    <span>{% if entry.content_type %}{{ entry.content_type.name|capfirst }}{% else %}Bilinmiyor{% endif %}</span>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
