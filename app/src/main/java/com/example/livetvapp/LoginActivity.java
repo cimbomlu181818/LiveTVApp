@@ -41,6 +41,17 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout layoutTrialUyari;
     private TextView tvTrialBittiMesaji, tvUyariSolIkon, tvUyariSagIkon;
 
+    private Button tvSifremiUnuttum;
+    private View layoutSifremiUnuttum;
+    private TextView tvSifreSifirlamaBilgi;
+    private EditText etSifreUnutEmail;
+    private Button btnKodGonder, btnSifreSifirlamaGeri;
+    private String beklenenSifirlamaEmail = "";
+
+    private View layoutYeniSifre;
+    private EditText etSifirlamaKodu, etYeniSifre, etYeniSifreTekrar;
+    private Button btnSifreyiSifirla, btnYeniSifreGeri;
+
     private ApiHelper apiHelper;
     private String beklenenDogrulamaEmail = "";
 
@@ -100,6 +111,20 @@ public class LoginActivity extends AppCompatActivity {
         tvTrialBittiMesaji  = findViewById(R.id.tvTrialBittiMesaji);
         tvUyariSolIkon      = findViewById(R.id.tvUyariSolIkon);
         tvUyariSagIkon      = findViewById(R.id.tvUyariSagIkon);
+
+        tvSifremiUnuttum        = findViewById(R.id.tvSifremiUnuttum);
+        layoutSifremiUnuttum    = findViewById(R.id.layoutSifremiUnuttum);
+        tvSifreSifirlamaBilgi   = findViewById(R.id.tvSifreSifirlamaBilgi);
+        etSifreUnutEmail        = findViewById(R.id.etSifreUnutEmail);
+        btnKodGonder            = findViewById(R.id.btnKodGonder);
+        btnSifreSifirlamaGeri   = findViewById(R.id.btnSifreSifirlamaGeri);
+
+        layoutYeniSifre         = findViewById(R.id.layoutYeniSifre);
+        etSifirlamaKodu         = findViewById(R.id.etSifirlamaKodu);
+        etYeniSifre             = findViewById(R.id.etYeniSifre);
+        etYeniSifreTekrar       = findViewById(R.id.etYeniSifreTekrar);
+        btnSifreyiSifirla       = findViewById(R.id.btnSifreyiSifirla);
+        btnYeniSifreGeri        = findViewById(R.id.btnYeniSifreGeri);
     }
 
     private void olaylariAyarla() {
@@ -160,6 +185,74 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         btnGirisEkraninaGeri.setOnClickListener(v -> dogrulamaPaneliniGizle());
+
+        tvSifremiUnuttum.setOnClickListener(v -> sifremiUnuttumPaneliniGoster());
+        btnKodGonder.setOnClickListener(v -> {
+            String email = etSifreUnutEmail.getText().toString().trim();
+            if (email.isEmpty()) {
+                hataGoster("E-posta adresi boş olamaz.");
+                return;
+            }
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                hataGoster("Geçerli bir e-posta adresi girin.");
+                return;
+            }
+            klavyeGizle();
+            yuklemeGoster(true);
+            hataGizle();
+            beklenenSifirlamaEmail = email;
+            apiHelper.sifremiUnuttum(email, new ApiHelper.ApiListener() {
+                @Override
+                public void onBasarili(JSONObject sonuc) {
+                    yuklemeGoster(false);
+                    yeniSifrePaneliniGoster();
+                }
+                @Override
+                public void onHata(String hata) {
+                    yuklemeGoster(false);
+                    hataGoster(hata);
+                }
+            });
+        });
+
+        btnSifreyiSifirla.setOnClickListener(v -> {
+            String kod = etSifirlamaKodu.getText().toString().trim();
+            String yeniSifre = etYeniSifre.getText().toString().trim();
+            String yeniSifreTekrar = etYeniSifreTekrar.getText().toString().trim();
+
+            if (kod.isEmpty()) {
+                hataGoster("Lütfen kodu girin.");
+                return;
+            }
+            if (yeniSifre.length() < 6) {
+                hataGoster("Şifre en az 6 karakter olmalıdır.");
+                return;
+            }
+            if (!yeniSifre.equals(yeniSifreTekrar)) {
+                hataGoster("Girdiğiniz şifreler birbiriyle uyuşmuyor.");
+                return;
+            }
+            klavyeGizle();
+            yuklemeGoster(true);
+            hataGizle();
+            apiHelper.sifreSifirla(beklenenSifirlamaEmail, kod, yeniSifre, new ApiHelper.ApiListener() {
+                @Override
+                public void onBasarili(JSONObject sonuc) {
+                    yuklemeGoster(false);
+                    yeniSifrePaneliniGizleVeGirisEkraninaDon();
+                    hataGoster("Şifreniz güncellendi. Şimdi yeni şifrenizle giriş yapabilirsiniz.");
+                }
+                @Override
+                public void onHata(String hata) {
+                    yuklemeGoster(false);
+                    hataGoster(hata);
+                }
+            });
+        });
+
+        btnSifreSifirlamaGeri.setOnClickListener(v -> sifremiUnuttumPaneliniGizle());
+
+        btnYeniSifreGeri.setOnClickListener(v -> yeniSifrePaneliniGizleVeGirisEkraninaDon());
     }
 
     private void islemYap(boolean kayitModu) {
@@ -257,10 +350,74 @@ public class LoginActivity extends AppCompatActivity {
             etSifre.setVisibility(View.VISIBLE);
             btnGirisYap.setVisibility(View.VISIBLE);
             btnKayitOl.setVisibility(View.VISIBLE);
+            tvSifremiUnuttum.setVisibility(View.VISIBLE);
 
             if (tvPremiumBilgisi != null) tvPremiumBilgisi.setVisibility(View.VISIBLE);
 
             hataGizle();
+        });
+    }
+
+    private void sifremiUnuttumPaneliniGoster() {
+        runOnUiThread(() -> {
+            hataGizle();
+            trialUyariGizle();
+
+            etEmail.setVisibility(View.GONE);
+            etSifre.setVisibility(View.GONE);
+            btnGirisYap.setVisibility(View.GONE);
+            btnKayitOl.setVisibility(View.GONE);
+            tvSifremiUnuttum.setVisibility(View.GONE);
+            btnGoogle.setVisibility(View.GONE);
+
+            if (tvTrialBilgisi != null)   tvTrialBilgisi.setVisibility(View.GONE);
+            if (tvPremiumBilgisi != null) tvPremiumBilgisi.setVisibility(View.GONE);
+
+            layoutSifremiUnuttum.setVisibility(View.VISIBLE);
+        });
+    }
+
+    private void sifremiUnuttumPaneliniGizle() {
+        runOnUiThread(() -> {
+            layoutSifremiUnuttum.setVisibility(View.GONE);
+
+            etEmail.setVisibility(View.VISIBLE);
+            etSifre.setVisibility(View.VISIBLE);
+            btnGirisYap.setVisibility(View.VISIBLE);
+            btnKayitOl.setVisibility(View.VISIBLE);
+            tvSifremiUnuttum.setVisibility(View.VISIBLE);
+
+            etSifreUnutEmail.setText("");
+            etSifreUnutEmail.setEnabled(true);
+            tvSifreSifirlamaBilgi.setText("Şifrenizi sıfırlamak için email adresinizi girin.");
+
+            hataGizle();
+        });
+    }
+
+    private void yeniSifrePaneliniGoster() {
+        runOnUiThread(() -> {
+            hataGizle();
+            layoutSifremiUnuttum.setVisibility(View.GONE);
+            layoutYeniSifre.setVisibility(View.VISIBLE);
+        });
+    }
+
+    private void yeniSifrePaneliniGizleVeGirisEkraninaDon() {
+        runOnUiThread(() -> {
+            layoutYeniSifre.setVisibility(View.GONE);
+
+            etEmail.setVisibility(View.VISIBLE);
+            etSifre.setVisibility(View.VISIBLE);
+            btnGirisYap.setVisibility(View.VISIBLE);
+            btnKayitOl.setVisibility(View.VISIBLE);
+            tvSifremiUnuttum.setVisibility(View.VISIBLE);
+
+            etSifreUnutEmail.setText("");
+            etSifreUnutEmail.setEnabled(true);
+            etSifirlamaKodu.setText("");
+            etYeniSifre.setText("");
+            etYeniSifreTekrar.setText("");
         });
     }
 
@@ -499,6 +656,14 @@ public class LoginActivity extends AppCompatActivity {
                 dogrulamaPaneliniGizle();
                 return true;
             }
+            if (layoutSifremiUnuttum != null && layoutSifremiUnuttum.getVisibility() == View.VISIBLE) {
+                sifremiUnuttumPaneliniGizle();
+                return true;
+            }
+            if (layoutYeniSifre != null && layoutYeniSifre.getVisibility() == View.VISIBLE) {
+                yeniSifrePaneliniGizleVeGirisEkraninaDon();
+                return true;
+            }
             klavyeGizle();
             finishAffinity();
             return true;
@@ -510,6 +675,14 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (layoutDogrulama != null && layoutDogrulama.getVisibility() == View.VISIBLE) {
             dogrulamaPaneliniGizle();
+            return;
+        }
+        if (layoutSifremiUnuttum != null && layoutSifremiUnuttum.getVisibility() == View.VISIBLE) {
+            sifremiUnuttumPaneliniGizle();
+            return;
+        }
+        if (layoutYeniSifre != null && layoutYeniSifre.getVisibility() == View.VISIBLE) {
+            yeniSifrePaneliniGizleVeGirisEkraninaDon();
             return;
         }
         klavyeGizle();

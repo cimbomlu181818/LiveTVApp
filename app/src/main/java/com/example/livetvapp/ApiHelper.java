@@ -200,7 +200,29 @@ public class ApiHelper {
             listener.onHata("Veri hazırlama hatası.");
         }
     }
+    public void sifremiUnuttum(String email, ApiListener listener) {
+        JSONObject veri = new JSONObject();
+        try {
+            veri.put("email", email);
+        } catch (Exception e) {
+            listener.onHata("Beklenmeyen bir hata oluştu.");
+            return;
+        }
+        istekGonder("sifremi-unuttum/", veri, listener);
+    }
 
+    public void sifreSifirla(String email, String kod, String yeniSifre, ApiListener listener) {
+        JSONObject veri = new JSONObject();
+        try {
+            veri.put("email", email);
+            veri.put("kod", kod);
+            veri.put("yeni_sifre", yeniSifre);
+        } catch (Exception e) {
+            listener.onHata("Beklenmeyen bir hata oluştu.");
+            return;
+        }
+        istekGonder("sifre-sifirla/", veri, listener);
+    }
     public void dogrula(String email, String kod, ApiListener listener) {
         try {
             JSONObject veri = new JSONObject();

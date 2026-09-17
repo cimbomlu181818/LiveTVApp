@@ -111,19 +111,18 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Giriş yap / Kayıt ol -->
+            <!-- Giriş yap -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnGirisYap"
-                    android:layout_width="0dp"
+                    android:layout_width="652dp"
                     android:layout_height="46dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
                     android:background="@drawable/btn_primary_teal"
                     android:focusable="true"
                     android:stateListAnimator="@null"
@@ -132,17 +131,38 @@
                     android:textColor="@color/teal_text"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Kayıt ol / Şifremi unuttum -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnKayitOl"
-                    android:layout_width="0dp"
+                    android:layout_width="320dp"
                     android:layout_height="46dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
                     android:background="@drawable/btn_ghost_outline"
                     android:focusable="true"
                     android:stateListAnimator="@null"
                     android:text="Kayıt ol"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/tvSifremiUnuttum"
+                    android:layout_width="320dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/btn_ghost_outline"
+                    android:focusable="true"
+                    android:stateListAnimator="@null"
+                    android:text="Şifremi unuttum?"
                     android:textAllCaps="false"
                     android:textColor="@color/text_muted"
                     android:textSize="14sp"
@@ -489,6 +509,173 @@
 
             <Button
                 android:id="@+id/btnGirisEkraninaGeri"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="← Giriş ekranına dön"
+                android:textAllCaps="false"
+                android:textColor="@color/text_muted"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             Şifremi Unuttum paneli — başta gizli
+             ══════════════════════════════════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/layoutSifremiUnuttum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔑"
+                android:textSize="36sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvSifreSifirlamaBilgi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Şifrenizi sıfırlamak için email adresinizi girin."
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/etSifreUnutEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/input_field_background"
+                android:hint="E-posta"
+                android:inputType="textEmailAddress"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_faint"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnKodGonder"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/btn_primary_teal"
+                android:stateListAnimator="@null"
+                android:text="Kod Gönder"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_text"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSifreSifirlamaGeri"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="← Giriş ekranına dön"
+                android:textAllCaps="false"
+                android:textColor="@color/text_muted"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             Yeni Şifre Belirleme paneli — başta gizli, kod gönderildikten sonra gösterilir
+             ══════════════════════════════════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/layoutYeniSifre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔒"
+                android:textSize="36sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="E-postanıza gönderdiğimiz kodu ve yeni şifrenizi girin."
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/etSifirlamaKodu"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/input_field_background"
+                android:hint="6 haneli kod"
+                android:inputType="number"
+                android:maxLength="6"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_faint"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/etYeniSifre"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/input_field_background"
+                android:hint="Yeni şifre (en az 6 karakter)"
+                android:inputType="textPassword"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_faint"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/etYeniSifreTekrar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/input_field_background"
+                android:hint="Yeni şifre (tekrar)"
+                android:inputType="textPassword"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_faint"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnSifreyiSifirla"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/btn_primary_teal"
+                android:stateListAnimator="@null"
+                android:text="Şifreyi Sıfırla"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_text"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnYeniSifreGeri"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
