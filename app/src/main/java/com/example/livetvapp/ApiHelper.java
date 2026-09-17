@@ -253,6 +253,7 @@ public class ApiHelper {
             veri.put("cihaz_id", cihazId);
             veri.put("marka", android.os.Build.MANUFACTURER);
             veri.put("model", android.os.Build.MODEL);
+            veri.put("versionCode", BuildConfig.VERSION_CODE);
             istekGonder("erisim/", veri, listener);
         } catch (Exception e) {
             listener.onHata("Veri hazırlama hatası.");

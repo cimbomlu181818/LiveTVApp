@@ -352,12 +352,11 @@ public class LoginActivity extends AppCompatActivity {
             btnKayitOl.setVisibility(View.VISIBLE);
             tvSifremiUnuttum.setVisibility(View.VISIBLE);
 
-            if (tvPremiumBilgisi != null) tvPremiumBilgisi.setVisibility(View.VISIBLE);
+            if (tvPremiumBilgisi != null) tvPremiumBilgisi.setVisibility(View.GONE);
 
             hataGizle();
         });
     }
-
     private void sifremiUnuttumPaneliniGoster() {
         runOnUiThread(() -> {
             hataGizle();
@@ -567,10 +566,10 @@ public class LoginActivity extends AppCompatActivity {
         runOnUiThread(() -> tvHata.setVisibility(View.GONE));
     }
 
-    
+
     private void bakimEkraniniTamGoster(String mesaj) {
         runOnUiThread(() -> {
-            if (findViewById(BAKIM_OVERLAY_ID) != null) return; 
+            if (findViewById(BAKIM_OVERLAY_ID) != null) return;
 
             klavyeGizle();
 
@@ -622,19 +621,87 @@ public class LoginActivity extends AppCompatActivity {
                     android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 20));
             icerik.addView(bosluk2);
 
+            // Mesaj içinden linki ayıkla (varsa)
+            String linkUrl = null;
+            java.util.regex.Matcher linkEslesme = android.util.Patterns.WEB_URL.matcher(mesaj);
+            if (linkEslesme.find()) {
+                linkUrl = linkEslesme.group();
+            }
+            String mesajLinksiz = (linkUrl != null)
+                    ? mesaj.replace(linkUrl, "").replaceAll("\\s+", " ").trim()
+                    : mesaj;
+
             android.widget.TextView tvMesaj = new android.widget.TextView(this);
-            tvMesaj.setText(mesaj);
+            tvMesaj.setText(mesajLinksiz);
             tvMesaj.setTextColor(0xFFB0B0B0);
             tvMesaj.setTextSize(15);
             tvMesaj.setGravity(android.view.Gravity.CENTER);
             tvMesaj.setLineSpacing(6, 1.2f);
             icerik.addView(tvMesaj);
 
-            kaplama.addView(icerik);
-            addContentView(kaplama, new android.widget.FrameLayout.LayoutParams(
-                    android.widget.FrameLayout.LayoutParams.MATCH_PARENT,
-                    android.widget.FrameLayout.LayoutParams.MATCH_PARENT));
-            kaplama.requestFocus();
+            if (linkUrl != null) {
+                final String tiklananLink = linkUrl;
+
+                android.widget.Space bosluk3 = new android.widget.Space(this);
+                bosluk3.setLayoutParams(new android.widget.LinearLayout.LayoutParams(
+                        android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 32));
+                icerik.addView(bosluk3);
+
+                android.widget.Button btnGuncelle = new android.widget.Button(this);
+                btnGuncelle.setText("YENİ SÜRÜMÜ İNDİR");
+                btnGuncelle.setAllCaps(false);
+                btnGuncelle.setTextColor(0xFFFFFFFF);
+                btnGuncelle.setTextSize(15);
+                btnGuncelle.setPadding(48, 24, 48, 24);
+                btnGuncelle.setFocusable(true);
+                btnGuncelle.setFocusableInTouchMode(true);
+
+                android.graphics.drawable.GradientDrawable arkaplanNormal =
+                        new android.graphics.drawable.GradientDrawable();
+                arkaplanNormal.setColor(0xFF1E1E1E);
+                arkaplanNormal.setCornerRadius(12f);
+                arkaplanNormal.setStroke(3, 0xFFFF6B2C);
+
+                android.graphics.drawable.GradientDrawable arkaplanOdaklanmis =
+                        new android.graphics.drawable.GradientDrawable();
+                arkaplanOdaklanmis.setColor(0xFFFF6B2C);
+                arkaplanOdaklanmis.setCornerRadius(12f);
+
+                btnGuncelle.setBackground(arkaplanNormal);
+
+                btnGuncelle.setOnFocusChangeListener((v, odaklandiMi) -> {
+                    btnGuncelle.setBackground(odaklandiMi ? arkaplanOdaklanmis : arkaplanNormal);
+                    btnGuncelle.setTextColor(odaklandiMi ? 0xFF0A0A0A : 0xFFFFFFFF);
+                });
+
+                btnGuncelle.setOnClickListener(v -> {
+                    try {
+                        Intent tarayiciIntent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(tiklananLink));
+                        tarayiciIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(tarayiciIntent);
+                    } catch (Exception e) {
+                        Toast.makeText(LoginActivity.this, "Link açılamadı: " + tiklananLink, Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                android.widget.LinearLayout.LayoutParams btnParams = new android.widget.LinearLayout.LayoutParams(
+                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
+                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT);
+                btnGuncelle.setLayoutParams(btnParams);
+                icerik.addView(btnGuncelle);
+
+                kaplama.addView(icerik);
+                addContentView(kaplama, new android.widget.FrameLayout.LayoutParams(
+                        android.widget.FrameLayout.LayoutParams.MATCH_PARENT,
+                        android.widget.FrameLayout.LayoutParams.MATCH_PARENT));
+                btnGuncelle.requestFocus();
+            } else {
+                kaplama.addView(icerik);
+                addContentView(kaplama, new android.widget.FrameLayout.LayoutParams(
+                        android.widget.FrameLayout.LayoutParams.MATCH_PARENT,
+                        android.widget.FrameLayout.LayoutParams.MATCH_PARENT));
+                kaplama.requestFocus();
+            }
         });
     }
 
