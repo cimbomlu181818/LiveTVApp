@@ -109,7 +109,7 @@
         <activity
             android:name=".paneller.DosyaSecicipaneli"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="sensor"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustNothing" />
@@ -124,7 +124,7 @@
 
         <activity
             android:name=".remotecontrol.RemoteControlActivity"
-            android:exported="true"
+            android:exported="false"
             android:configChanges="keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustResize" />
     </application>

@@ -168,6 +168,16 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDestekOneri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="Destek, öneri veya her türlü konu için azsh181818@gmail.com adresine mail atabilirsiniz."
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Google butonu (kodda her zaman gizleniyor) -->
@@ -688,7 +698,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 
     <TextView
