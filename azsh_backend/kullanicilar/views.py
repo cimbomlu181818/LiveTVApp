@@ -276,7 +276,16 @@ def erisim_kontrol(request):
 
     ayarlar = Ayarlar.objects.first()
     if ayarlar and ayarlar.bakim_modu_acik:
-        return JsonResponse({'bakim_modu': True, 'mesaj': ayarlar.bakim_mesaji})
+        try:
+            istek_versiyon = int(veri.get('versionCode', 0))
+        except (TypeError, ValueError):
+            istek_versiyon = 0
+
+        versiyon_kisiti_yok = ayarlar.bakim_max_versiyon is None
+        versiyon_etkileniyor = versiyon_kisiti_yok or istek_versiyon <= ayarlar.bakim_max_versiyon
+
+        if versiyon_etkileniyor:
+            return JsonResponse({'bakim_modu': True, 'mesaj': ayarlar.bakim_mesaji})
 
     email = veri.get('email', '').strip().lower()
     cihaz_id = veri.get('cihaz_id', '').strip()

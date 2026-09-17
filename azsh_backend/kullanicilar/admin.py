@@ -79,7 +79,7 @@ class KullaniciAdmin(admin.ModelAdmin):
 
 @admin.register(Ayarlar)
 class AyarlarAdmin(admin.ModelAdmin):
-    list_display = ('bakim_modu_acik', 'bakim_mesaji')
+    list_display = ('bakim_modu_acik', 'bakim_mesaji', 'bakim_max_versiyon')
 
     def has_add_permission(self, request):
         if Ayarlar.objects.exists():

@@ -44,6 +44,11 @@ class Ayarlar(models.Model):
         default="Uygulama bakımda, birazdan döneceğiz.",
         verbose_name="Bakım Mesajı"
     )
+    bakim_max_versiyon = models.PositiveIntegerField(
+        blank=True, null=True,
+        verbose_name="Bakım Modu - Maksimum Versiyon (versionCode)",
+        help_text="Bu versionCode ve altındaki uygulamalar bakım modundan etkilenir. Boş bırakılırsa tüm versiyonlar etkilenir."
+    )
 
     def __str__(self):
         return "Genel Ayarlar"
